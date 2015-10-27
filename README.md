@@ -7,10 +7,10 @@ A set of [ES7 decorators](https://github.com/wycats/javascript-decorators) aroun
 ## Decorators
 
 * `@request`: decorates a function returning a url to a `fetch` request with your options and data.
-* `@parseJson`: decorates a function returning a `Response` to parse its result to json.
-* `@parseText`: decorates a function returning a `Response` to parse its result to text.
-* `@parseBlob`: decorates a function returning a `Response` to parse its result to blob.
-* `@parseAuto`: decorates a function returning a `Response` to parse its result automatically based on response content type.
+* `@extractJson`: decorates a function returning a `Response` to extract its result as json.
+* `@extractText`: decorates a function returning a `Response` to extract its result as text.
+* `@extractBlob`: decorates a function returning a `Response` to extract its result as blob.
+* `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response content type.
 * `@jsonStringify`: stringify the first (or more) argument so you don't have to.
 
 ### @request(options:?object)
