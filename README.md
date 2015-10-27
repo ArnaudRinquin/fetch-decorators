@@ -1,5 +1,6 @@
 # fetch-decorators
 
+[![Build Status](https://travis-ci.org/ArnaudRinquin/fetch-decorators.svg)](https://travis-ci.org/ArnaudRinquin/fetch-decorators)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 A set of [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
