@@ -6,12 +6,12 @@ A set of [ES7 decorators](https://github.com/wycats/javascript-decorators) aroun
 
 ## Decorators
 
-* `@request`: decorates a function returning a url to a `fetch` request with your options and data.
+* `@request`: decorates a function returning a url to a `fetch` request with your options.
 * `@extractJson`: decorates a function returning a `Response` to extract its result as json.
 * `@extractText`: decorates a function returning a `Response` to extract its result as text.
 * `@extractBlob`: decorates a function returning a `Response` to extract its result as blob.
 * `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response content type.
-* `@jsonStringify`: stringify the first (or more) argument so you don't have to.
+* TODO `@jsonStringify`: stringify the first (or more) argument so you don't have to.
 
 ### @request(options:?object)
 
@@ -22,7 +22,7 @@ This helper wraps the original function into a fetch call so it may just return 
 
 becomes:
 
-`(originalArgs) => (data:?string, options:?object) => fetchResponse:promise`
+`(originalArgs) => (options:?object) => fetchResponse:promise`
 
 ```js
 class Users {
@@ -51,9 +51,11 @@ class Users {
 
 const userApi = new UserApi('/api');
 
-userApi.createUser()(JSON.stringify({
-  firstName: 'Walter',
-  lastName: 'White',
+userApi.createUser()({
+  body: JSON.stringify({
+    firstName: 'Walter',
+    lastName: 'White',
+  }
 })).then(function(response){
   // Regular `fetch` response
 );
@@ -104,7 +106,7 @@ Content types are matched this way:
 'default': 'blob'
 ```
 
-### @jsonStringify(argsCount:?int=1)
+### TODO @jsonStringify(argsCount:?int=1)
 
 This helper will wrap original function so the first `argsCount` passed arguments are passed through `JSON.stringify` before they are to original function.
 
