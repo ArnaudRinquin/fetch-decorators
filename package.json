@@ -1,0 +1,29 @@
+{
+  "name": "fetch-decorators",
+  "version": "0.0.0",
+  "description": "A set of ES7 decorators around fetch api",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/ArnaudRinquin/fetch-decorators"
+  },
+  "keywords": [
+    "fetch",
+    "decorators",
+    "es7",
+    "es2016"
+  ],
+  "author": "Arnaud Rinquin",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^1.1.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
