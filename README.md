@@ -1,9 +1,11 @@
 # fetch-decorators
 
-[![Build Status](https://travis-ci.org/ArnaudRinquin/fetch-decorators.svg)](https://travis-ci.org/ArnaudRinquin/fetch-decorators)
+[![npm package](http://img.shields.io/npm/v/fetch-decorators.svg)](https://www.npmjs.com/package/fetch-decorators)
+[![Build Status](https://img.shields.io/travis/ArnaudRinquin/fetch-decorators.svg)](https://travis-ci.org/ArnaudRinquin/fetch-decorators)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Code Climate](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/gpa.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators)
-[![Test Coverage](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/coverage.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/coverage)
+[![Code Climate](https://img.shields.io/codeclimate/github/ArnaudRinquin/fetch-decorators.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/ArnaudRinquin/fetch-decorators.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/coverage)
+[![npm package](http://img.shields.io/npm/l/fetch-decorators.svg)](https://www.npmjs.com/package/fetch-decorators)
 
 A set of [composable](#composition) [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
 
