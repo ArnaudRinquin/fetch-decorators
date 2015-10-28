@@ -14,7 +14,7 @@ A set of [ES7 decorators](https://github.com/wycats/javascript-decorators) aroun
 * `@extractText`: decorates a function returning a `Response` to extract its result as text.
 * `@extractBlob`: decorates a function returning a `Response` to extract its result as blob.
 * `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response content type.
-* TODO `@jsonStringify`: stringify the first (or more) argument so you don't have to.
+* `@bodify`: prepare passed data (and extra options) into fetch-ready body options.
 
 ### @request(options:?object)
 
@@ -28,6 +28,8 @@ becomes:
 `(originalArgs) => (options:?object) => fetchResponse:promise`
 
 ```js
+import { request } from 'fetch-decorators';
+
 class Users {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
@@ -49,8 +51,6 @@ class Users {
     return `${this.baseUrl}/users`;
   }
 }
-
-// Later...
 
 const userApi = new UserApi('/api');
 
@@ -81,6 +81,8 @@ becomes:
 where the `extractionResult` promise resolves with : `{response:Response, data:any}`
 
 ```js
+import { extractJson } from 'fetch-decorators';
+
 class Users {
   @extractJson
   get(userId) {
@@ -109,15 +111,37 @@ Content types are matched this way:
 'default': 'blob'
 ```
 
-### TODO @jsonStringify(argsCount:?int=1)
+### @bodify
 
-This helper will wrap original function so the first `argsCount` passed arguments are passed through `JSON.stringify` before they are to original function.
+Takes body data and options and calls the decorated function with a proper fetch `options` object where `options.body` is passed data as a string.
 
-`(arg0:string, arg1:any, ...) => orignalResult`
+`(options) => orignalResult`
 
 becomes:
 
-`(arg0:object, arg1:any, ...) => orignalResult`
+`(data:object, extraOptions:?object) => orignalResult`
+
+```js
+import { bodify } from 'fetch-decorators';
+
+class Users {
+  @bodify
+  create(options) {
+    return fetch(`/api/users/`, options);
+  }
+}
+
+const users = new Users();
+const userData = {
+  firstName: 'Jessie',
+  lastName: 'Pinkman',
+};
+const options = { method: 'POST' };
+
+users.create(userData, options).then(function(response){
+  // response === the original fetch response
+});
+```
 
 ##  FAQ
 
