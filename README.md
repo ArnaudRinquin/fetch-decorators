@@ -191,7 +191,7 @@ const authHeaders = {
   },
 };
 
-messages.post(message, authHeaders).then(({response, data}) => {
+messages.post('ArnaudRinquin')(message, authHeaders).then(({response, data}) => {
   // response === the original fetch response
   // data === the JSON object returned by the server
 });
