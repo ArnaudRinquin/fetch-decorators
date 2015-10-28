@@ -111,26 +111,28 @@ Takes body data and options and calls the decorated function with a proper fetch
 
 becomes:
 
-`(data:object, extraOptions:?object) => orignalResult`
+`(originalArgs) => (data:object, extraOptions:?object) => orignalResult(options)`
 
 ```js
 import { bodify } from 'fetch-decorators';
 
-class Users {
+class Messages {
   @bodify
-  create(options) {
-    return fetch(`/api/users/`, options);
+  create(userId) {
+    return function(options) {
+      return fetch(`/api/users/${userId}/messages`, options);
+    };
   }
 }
 
-const users = new Users();
-const userData = {
-  firstName: 'Jessie',
-  lastName: 'Pinkman',
+const messages = new Messages();
+const messages = {
+  content: 'Hello',
+  draft: false,
 };
 const options = { method: 'POST' };
 
-users.create(userData, options).then(function(response){
+users.create('fakeUserId')(message, options).then(function(response){
   // response === the original fetch response
 });
 ```

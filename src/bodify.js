@@ -1,20 +1,24 @@
 export function bodify(target, key, description) {
   return {
     ...description,
-    value: function(data, extraOptions) {
+    value: function() {
+      const originalResult = description.value.apply(this, arguments);
 
-      let body = data;
+      return function(data, extraOptions) {
 
-      if (typeof data !== 'string') {
-        body = JSON.stringify(data);
-      }
+        let body = data;
 
-      const options = {
-        ...extraOptions,
-        body,
+        if (typeof data !== 'string') {
+          body = JSON.stringify(data);
+        }
+
+        const options = {
+          ...extraOptions,
+          body,
+        };
+
+        return originalResult(options);
       };
-
-      return description.value.call(this, options);
     },
   };
 }
