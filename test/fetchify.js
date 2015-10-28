@@ -1,8 +1,8 @@
-import { request } from '../src';
+import { fetchify } from '../src';
 import test from 'tape';
 import fetchMock from 'fetch-mock';
 
-test('@request', (t) => {
+test('@fetchify', (t) => {
 
   const responseBody = {received: 'data'};
   const requestBody = 'stuff';
@@ -28,22 +28,22 @@ test('@request', (t) => {
   ]);
 
   class TextClass {
-    @request()
+    @fetchify()
     simplest(){
       return '/regular';
     }
 
-    @request()
+    @fetchify()
     originalArgs(firstHalf){
       return `${firstHalf}tom`;
     }
 
-    @request(baseOptions)
+    @fetchify(baseOptions)
     baseOptions(){
       return '/regular';
     }
 
-    @request()
+    @fetchify()
     willThrow() {
       return true;
     }

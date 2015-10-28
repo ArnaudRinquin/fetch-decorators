@@ -3,6 +3,6 @@ export { extractText } from './extract';
 export { extractBlob } from './extract';
 export { extractAuto } from './extract';
 
-export { request } from './request';
+export { fetchify } from './fetchify';
 
 export { bodify } from './bodify';

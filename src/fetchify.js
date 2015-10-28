@@ -1,4 +1,4 @@
-export function request(baseOptions) {
+export function fetchify(baseOptions) {
   return function(target, key, description) {
     return {
       ...description,
@@ -6,7 +6,7 @@ export function request(baseOptions) {
         const url = description.value.apply(this, arguments);
 
         if (typeof url !== 'string') {
-          throw new Error('@request decorated functions must return a string, instead returned:', url);
+          throw new Error('@fetchify decorated functions must return a string, instead returned:', url);
         }
 
         return function(additionalOptions) {

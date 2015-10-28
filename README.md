@@ -9,14 +9,14 @@ A set of composable [ES7 decorators](https://github.com/wycats/javascript-decora
 
 ## Decorators
 
-* `@request`: decorates a function returning a url to a `fetch` request with your options.
+* `@fetchify`: decorates a function returning a url to a `fetch` call with your options.
 * `@extractJson`: decorates a function returning a `Response` to extract its result as json.
 * `@extractText`: decorates a function returning a `Response` to extract its result as text.
 * `@extractBlob`: decorates a function returning a `Response` to extract its result as blob.
 * `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response content type.
 * `@bodify`: prepare passed data (and extra options) into fetch-ready body options.
 
-### @request(options:?object)
+### @fetchify(options:?object)
 
 This helper wraps the original function into a fetch call so it may just return a string, and then be called with optional data, headers, options.
 
@@ -28,19 +28,19 @@ becomes:
 `(originalArgs) => (options:?object) => fetchResponse:promise`
 
 ```js
-import { request } from 'fetch-decorators';
+import { fetchify } from 'fetch-decorators';
 
 class Users {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
   }
 
-  @request()
+  @fetchify()
   get(userId) {
     return `${this.baseUrl}/users/${userId}`;
   }
 
-  @request({
+  @fetchify({
     method: 'POST',
     headers: {
       'Accept': 'application/json',

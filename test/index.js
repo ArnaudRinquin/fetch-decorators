@@ -1,3 +1,3 @@
 import {} from './extract';
-import {} from './request';
+import {} from './fetchify';
 import {} from './bodify';
