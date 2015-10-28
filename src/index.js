@@ -4,3 +4,5 @@ export { extractBlob } from './extract';
 export { extractAuto } from './extract';
 
 export { request } from './request';
+
+export { bodify } from './bodify';
