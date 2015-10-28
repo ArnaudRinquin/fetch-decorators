@@ -145,7 +145,7 @@ These decorators wrap functions returning a fetch promise with the matching Resp
 
 becomes:
 
-`(originalArgs) => extractionResult:promise`
+`(originalArgs) => (options:?object) => extractionResult:promise`
 
 where the `extractionResult` promise resolves with : `{response:Response, data:any}`
 
@@ -155,13 +155,13 @@ import { extractJson } from 'fetch-decorators';
 class Users {
   @extractJson
   get(userId) {
-    return fetch(`/api/users/${userId}`);
+    return (options) => fetch(`/api/users/${userId}`, options);
   }
 }
 
 const users = new Users();
 
-users.get('userId123').then(function({response, data}){
+users.get('userId123')().then(function({response, data}){
   // response === the original fetch response
   // data === the extracted data, here a `user` JSON object
 });

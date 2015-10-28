@@ -25,29 +25,15 @@ export const extracters = {
 };
 
 function generateDecorator(extractMethod) {
-
-  const makeWrapper = (originalFn) => {
-    return () => {
-      const result = originalFn.apply(this, arguments);
-      if (typeof result === 'function') {
-        return makeWrapper(result);
-      }
-      if(typeof result.then === 'function') {
-        return result.then(extracters[extractMethod]);
-      }
-      if(typeof result[extractMethod]) {
-        return extracters[extractMethod](result);
-      }
-
-      throw new Error('Can not extract data or propagate extraction');
-    };
-  };
-
-
   return function extractDecorator(target, key, description) {
     return {
       ...description,
-      value: makeWrapper(description.value),
+      value: function(){
+        const originalResult = description.value.apply(this, arguments);
+        return function() {
+          return originalResult.apply(this, arguments).then(extracters[extractMethod]);
+        }.bind(this);
+      }.bind(this),
     };
   };
 }
