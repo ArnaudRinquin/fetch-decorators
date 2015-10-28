@@ -13,6 +13,8 @@ before_script:
   - npm prune
 after_script:
   - npm run report-coverage
+after_success:
+  - npm run semantic-release
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
