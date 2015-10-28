@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/gpa.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators)
 [![Test Coverage](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/coverage.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/coverage)
 
-A set of [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
+A set of composable [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
 
 ## Decorators
 
