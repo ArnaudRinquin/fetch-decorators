@@ -11,6 +11,8 @@ A set of [composable](#composition) [ES7 decorators](https://github.com/wycats/j
 
 Automate things request and response body parsing so you don't have to.
 
+No dependency (oh, except a [fetch polyfill](https://github.com/github/fetch) maybe)
+
 ## Usage TL;DR:
 
 ```sh
@@ -42,10 +44,10 @@ messages.post('ArnaudRinquin')({
 
 ## Decorators
 
-* `@fetchify`: decorates a function returning a url to a `fetch` call with your options.
-* `@bodify`: prepare passed data (and extra options) into fetch-ready body options.
-* `@extractJson`, `@extractText,` `@extractBlob`: decorates a function returning a `Response` to extract its result as json, text or blob.
-* `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response `Content-Type` header.
+* [`@fetchify`](#fetchifyoptionsobject): decorates a function returning a url to a `fetch` call with your options.
+* [`@bodify`](#bodify): prepare passed data (and extra options) into fetch-ready body options.
+* [`@extractJson`, `@extractText,` `@extractBlob`](#extractjson-extracttext-extractblob): decorates a function returning a `Response` to extract its result as json, text or blob.
+* [`@extractAuto`](#extractauto): decorates a function returning a `Response` to extract its result automatically based on response `Content-Type` header.
 
 These decorators have been designed to be [composable](#composition), give it a try!
 
@@ -101,6 +103,38 @@ userApi.getUser('fakeUserId123')().then(function(response){
 });
 ```
 
+### @bodify
+
+Takes body data and options and calls the decorated function with a proper fetch `options` object where `options.body` is passed data as a string.
+
+`(options) => orignalResult`
+
+becomes:
+
+`(data:object, extraOptions:?object) => orignalResult`
+
+```js
+import { bodify } from 'fetch-decorators';
+
+class Users {
+  @bodify
+  create(options) {
+    return fetch(`/api/users/`, options);
+  }
+}
+
+const users = new Users();
+const userData = {
+  firstName: 'Jessie',
+  lastName: 'Pinkman',
+};
+const options = { method: 'POST' };
+
+users.create(userData, options).then(function(response){
+  // response === the original fetch response
+});
+```
+
 ### @extractJson, @extractText, @extractBlob
 
 These decorators wrap functions returning a fetch promise with the matching Response extraction function.
@@ -142,38 +176,6 @@ Content types are matched this way:
 'application/json': 'json'
 'text/plain': 'text'
 'default': 'blob'
-```
-
-### @bodify
-
-Takes body data and options and calls the decorated function with a proper fetch `options` object where `options.body` is passed data as a string.
-
-`(options) => orignalResult`
-
-becomes:
-
-`(data:object, extraOptions:?object) => orignalResult`
-
-```js
-import { bodify } from 'fetch-decorators';
-
-class Users {
-  @bodify
-  create(options) {
-    return fetch(`/api/users/`, options);
-  }
-}
-
-const users = new Users();
-const userData = {
-  firstName: 'Jessie',
-  lastName: 'Pinkman',
-};
-const options = { method: 'POST' };
-
-users.create(userData, options).then(function(response){
-  // response === the original fetch response
-});
 ```
 
 ## Composition
