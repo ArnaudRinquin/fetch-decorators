@@ -5,16 +5,16 @@
 [![Code Climate](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/gpa.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators)
 [![Test Coverage](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/badges/coverage.svg)](https://codeclimate.com/github/ArnaudRinquin/fetch-decorators/coverage)
 
-A set of composable [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
+A set of [composable](#composition) [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
 
 ## Decorators
 
 * `@fetchify`: decorates a function returning a url to a `fetch` call with your options.
-* `@extractJson`: decorates a function returning a `Response` to extract its result as json.
-* `@extractText`: decorates a function returning a `Response` to extract its result as text.
-* `@extractBlob`: decorates a function returning a `Response` to extract its result as blob.
-* `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response content type.
 * `@bodify`: prepare passed data (and extra options) into fetch-ready body options.
+* `@extractJson`, `@extractText,` `@extractBlob`: decorates a function returning a `Response` to extract its result as json, text or blob.
+* `@extractAuto`: decorates a function returning a `Response` to extract its result automatically based on response `Content-Type` header.
+
+These decorators have been designed to be [composable](#composition), give it a try!
 
 ### @fetchify(options:?object)
 
@@ -140,6 +140,60 @@ const options = { method: 'POST' };
 
 users.create(userData, options).then(function(response){
   // response === the original fetch response
+});
+```
+
+## Composition
+
+All these decorators where designed so it's easy to use them together, just stack them! _Note: obviously, the order matters._
+
+```js
+import {
+  fetchify,
+  bodify,
+  extractJson,
+} from 'fetch-decorators';
+
+class Messages {
+  @extractJson
+  @bodify
+  @fetchify({method: 'POST'})
+  post(userId) {
+    return `/users/${userId}/messages`;
+  }
+
+  // Approximate equivalent without decorators
+  // Thanks to ES6, the volume of code is roughly the same
+  // But the complexity is higher and you'll probably
+  // have a lot of code duplication
+  mehPost(userId, data, extraOptions) {
+    return fetch(`/users/${userId}/messages`, {
+      method: 'POST',
+      ...extraOptions,
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
+  }
+}
+
+const messagesApi = new Messages();
+
+// Request body, as an object
+const message = {
+  content: 'Hello World',
+  public: true,
+  draft: false,
+};
+
+// Some extra options
+const authHeaders = {
+  headers: {
+    'X-AUTH-MUCH-SECURE': '123FOO456BAR',
+  },
+};
+
+messages.post(message, authHeaders).then(({response, data}) => {
+  // response === the original fetch response
+  // data === the JSON object returned by the server
 });
 ```
 
