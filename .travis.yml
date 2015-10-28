@@ -14,3 +14,6 @@ before_script:
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
+addons:
+  code_climate:
+    repo_token: 8a17454c3cc8f51a8013ca48380c95b5c6337ea9fa9941377d63031f86ba77b2
