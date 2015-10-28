@@ -9,6 +9,37 @@
 
 A set of [composable](#composition) [ES7 decorators](https://github.com/wycats/javascript-decorators) around the `fetch` api
 
+Automate things request and response body parsing so you don't have to.
+
+## Usage TL;DR:
+
+```sh
+npm i -S fetch-decorators
+```
+
+```js
+class Messages {
+  @extractJson
+  @bodify
+  @fetchify({method: 'POST'})
+  post(userId) {
+    return `/users/${userId}/messages`;
+  }
+}
+
+const messages = new Messages();
+
+messages.post('ArnaudRinquin')({
+  content: 'Hello World',
+  public: true,
+  draft: false,
+}).then(({response, data}) => {
+  // response === the original fetch response
+  // data === the JSON object returned by the server
+});
+
+```
+
 ## Decorators
 
 * `@fetchify`: decorates a function returning a url to a `fetch` call with your options.
@@ -193,7 +224,7 @@ const authHeaders = {
   },
 };
 
-messages.post('ArnaudRinquin')(message, authHeaders).then(({response, data}) => {
+messagesApi.post('ArnaudRinquin')(message, authHeaders).then(({response, data}) => {
   // response === the original fetch response
   // data === the JSON object returned by the server
 });
