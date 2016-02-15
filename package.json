@@ -32,7 +32,7 @@
     "colortape": "^0.1.1",
     "cz-conventional-changelog": "^1.1.4",
     "eslint": "^1.7.3",
-    "fetch-mock": "^3.0.0",
+    "fetch-mock": "^4.1.1",
     "isparta": "^4.0.0",
     "semantic-release": "^4.3.5",
     "tape": "^4.2.2"
