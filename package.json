@@ -31,7 +31,7 @@
     "codeclimate-test-reporter": "^0.1.1",
     "colortape": "^0.1.1",
     "cz-conventional-changelog": "^1.1.4",
-    "eslint": "^1.7.3",
+    "eslint": "^2.1.0",
     "fetch-mock": "^3.0.0",
     "isparta": "^4.0.0",
     "semantic-release": "^4.3.5",
