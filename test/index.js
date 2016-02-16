@@ -1,3 +1,5 @@
-import {} from './extract';
-import {} from './fetchify';
-import {} from './bodify';
+require('babel-core/register');
+
+require('./extract');
+require('./fetchify');
+require('./bodify');

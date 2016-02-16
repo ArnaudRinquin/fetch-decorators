@@ -1,4 +1,4 @@
-import test from 'tape';
+import { test } from 'tap';
 import { bodify } from '../src';
 
 test('@bodify', (t) => {
@@ -14,6 +14,8 @@ test('@bodify', (t) => {
       };
     }
   }
+
+  t.plan(3);
 
   t.test('with a string', (t) => {
     t.plan(2);

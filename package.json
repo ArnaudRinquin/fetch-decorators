@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/*.js test/*.js",
     "pretedst": "npm run lint",
-    "test": "babel-node `npm bin`/isparta cover --include 'src/*' --report lcov --report html --report text ./test/index.js | colortape",
+    "test": "tap test/index.js -R tap --cov --coverage-report=lcov | colortape",
     "report-coverage": "codeclimate-test-reporter < coverage/lcov.info",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -26,20 +26,25 @@
   "author": "Arnaud Rinquin",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^6.0.15",
-    "babel-eslint": "^4.1.3",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^4.1.8",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
     "codeclimate-test-reporter": "^0.1.1",
     "colortape": "^0.1.1",
-    "cz-conventional-changelog": "^1.1.4",
-    "eslint": "^1.7.3",
-    "fetch-mock": "^3.0.0",
+    "commitizen": "^2.5.0",
+    "eslint": "^2.1.0",
+    "fetch-mock": "^4.1.1",
     "isparta": "^4.0.0",
+    "rb-conventional-changelog": "^1.1.9",
     "semantic-release": "^4.3.5",
-    "tape": "^4.2.2"
+    "tap": "^5.5.0",
+    "tape": "^4.4.0"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/rb-conventional-changelog"
     }
   }
 }

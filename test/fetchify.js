@@ -1,8 +1,10 @@
 import { fetchify } from '../src';
-import test from 'tape';
+import { test } from 'tap';
 import fetchMock from 'fetch-mock';
 
 test('@fetchify', (t) => {
+
+  t.plan(5);
 
   const responseBody = {received: 'data'};
   const requestBody = 'stuff';
