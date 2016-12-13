@@ -35,7 +35,7 @@
     "colortape": "^0.1.1",
     "commitizen": "^2.5.0",
     "eslint": "^3.0.0",
-    "fetch-mock": "^4.1.1",
+    "fetch-mock": "^5.6.2",
     "isparta": "^4.0.0",
     "rb-conventional-changelog": "^1.1.9",
     "semantic-release": "^4.3.5",
