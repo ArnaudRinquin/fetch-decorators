@@ -38,7 +38,7 @@
     "fetch-mock": "^4.1.1",
     "isparta": "^4.0.0",
     "rb-conventional-changelog": "^1.1.9",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^6.3.2",
     "tap": "^10.0.0",
     "tape": "^4.4.0"
   },
