@@ -1,3 +1,6 @@
+> [!WARNING]
+> **Deprecated.** This project is no longer maintained and is kept for reference only. Issues and pull requests are not monitored.
+
 # fetch-decorators
 
 [![npm package](http://img.shields.io/npm/v/fetch-decorators.svg)](https://www.npmjs.com/package/fetch-decorators)
